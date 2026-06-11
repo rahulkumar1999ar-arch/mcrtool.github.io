@@ -16,3 +16,90 @@ function calculateAge() {
  "Your Age is " + age + " Years";
 }
 </script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCRTool - Free Online Tools</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f4f4;margin:0}
+header{background:#222;color:#fff;padding:15px;text-align:center}
+.container{max-width:1200px;margin:auto;padding:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px}
+.card{background:#fff;padding:15px;border-radius:10px;box-shadow:0 2px 5px rgba(0,0,0,.1)}
+input,textarea,button,select{width:100%;padding:8px;margin:5px 0}
+button{cursor:pointer}
+.result{font-weight:bold;margin-top:8px}
+</style>
+</head>
+<body>
+<header><h1>MCRTool - Free Online Tools</h1></header>
+<div class="container">
+<div class="grid">
+
+<div class="card"><h3>Age Calculator</h3><input type="date" id="dob"><button onclick="ageCalc()">Calculate</button><div id="age" class="result"></div></div>
+
+<div class="card"><h3>BMI Calculator</h3><input id="w" placeholder="Weight kg"><input id="h" placeholder="Height cm"><button onclick="bmi()">Calculate</button><div id="bmi" class="result"></div></div>
+
+<div class="card"><h3>GST Calculator</h3><input id="gstamt" placeholder="Amount"><input id="gstper" placeholder="GST %"><button onclick="gst()">Calculate</button><div id="gst" class="result"></div></div>
+
+<div class="card"><h3>Percentage Calculator</h3><input id="p1" placeholder="Value"><input id="p2" placeholder="Total"><button onclick="percent()">Calculate</button><div id="percent" class="result"></div></div>
+
+<div class="card"><h3>Discount Calculator</h3><input id="d1" placeholder="Price"><input id="d2" placeholder="Discount %"><button onclick="discount()">Calculate</button><div id="discount" class="result"></div></div>
+
+<div class="card"><h3>EMI Calculator</h3><input id="loan" placeholder="Loan"><input id="rate" placeholder="Rate %"><input id="months" placeholder="Months"><button onclick="emi()">Calculate</button><div id="emi" class="result"></div></div>
+
+<div class="card"><h3>Word Counter</h3><textarea id="wc"></textarea><button onclick="wordCount()">Count</button><div id="wcres" class="result"></div></div>
+
+<div class="card"><h3>Character Counter</h3><textarea id="cc"></textarea><button onclick="charCount()">Count</button><div id="ccres" class="result"></div></div>
+
+<div class="card"><h3>Text Uppercase</h3><textarea id="up"></textarea><button onclick="upper()">Convert</button><div id="upres" class="result"></div></div>
+
+<div class="card"><h3>Text Lowercase</h3><textarea id="low"></textarea><button onclick="lower()">Convert</button><div id="lowres" class="result"></div></div>
+
+<div class="card"><h3>Text Repeater</h3><input id="rtxt" placeholder="Text"><input id="rnum" placeholder="Times"><button onclick="repeatText()">Repeat</button><div id="rres" class="result"></div></div>
+
+<div class="card"><h3>Reverse Text</h3><input id="rev"><button onclick="reverseText()">Reverse</button><div id="revres" class="result"></div></div>
+
+<div class="card"><h3>Password Generator</h3><button onclick="pass()">Generate</button><div id="passres" class="result"></div></div>
+
+<div class="card"><h3>Random Number</h3><button onclick="rand()">Generate</button><div id="randres" class="result"></div></div>
+
+<div class="card"><h3>Profit/Loss</h3><input id="cp" placeholder="Cost Price"><input id="sp" placeholder="Selling Price"><button onclick="pl()">Calculate</button><div id="plres" class="result"></div></div>
+
+<div class="card"><h3>Loan Interest</h3><input id="la" placeholder="Amount"><input id="lr" placeholder="Rate"><button onclick="loanInt()">Calculate</button><div id="lires" class="result"></div></div>
+
+<div class="card"><h3>Base64 Encode</h3><input id="b64"><button onclick="b64e()">Encode</button><div id="b64res" class="result"></div></div>
+
+<div class="card"><h3>Base64 Decode</h3><input id="b64d"><button onclick="b64dec()">Decode</button><div id="b64dres" class="result"></div></div>
+
+<div class="card"><h3>JSON Formatter</h3><textarea id="json"></textarea><button onclick="jsonfmt()">Format</button><pre id="jsonres"></pre></div>
+
+<div class="card"><h3>Tip Calculator</h3><input id="bill" placeholder="Bill Amount"><input id="tip" placeholder="Tip %"><button onclick="tipCalc()">Calculate</button><div id="tipres" class="result"></div></div>
+
+</div></div>
+
+<script>
+function ageCalc(){let d=new Date(document.getElementById('dob').value);let a=new Date().getFullYear()-d.getFullYear();age.innerHTML=a+" Years";}
+function bmi(){let w=+document.getElementById('w').value,h=+document.getElementById('h').value/100;bmi.innerHTML=(w/(h*h)).toFixed(2);}
+function gst(){let a=+gstamt.value,p=+gstper.value;gst.innerHTML=(a+a*p/100).toFixed(2);}
+function percent(){percent.innerHTML=((p1.value/p2.value)*100).toFixed(2)+"%";}
+function discount(){discount.innerHTML=(d1.value-(d1.value*d2.value/100)).toFixed(2);}
+function emi(){let P=+loan.value,r=(+rate.value/12/100),n=+months.value;let e=P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);emi.innerHTML=isFinite(e)?e.toFixed(2):"Invalid";}
+function wordCount(){wcres.innerHTML=wc.value.trim().split(/\s+/).filter(Boolean).length;}
+function charCount(){ccres.innerHTML=cc.value.length;}
+function upper(){upres.innerHTML=up.value.toUpperCase();}
+function lower(){lowres.innerHTML=low.value.toLowerCase();}
+function repeatText(){rres.innerHTML=(rtxt.value+" ").repeat(+rnum.value);}
+function reverseText(){revres.innerHTML=rev.value.split('').reverse().join('');}
+function pass(){passres.innerHTML=Math.random().toString(36).slice(-12);}
+function rand(){randres.innerHTML=Math.floor(Math.random()*100000);}
+function pl(){let c=+cp.value,s=+sp.value;plres.innerHTML=(s-c>=0?"Profit: ":"Loss: ")+Math.abs(s-c);}
+function loanInt(){lires.innerHTML=(la.value*lr.value/100).toFixed(2);}
+function b64e(){b64res.innerHTML=btoa(b64.value);}
+function b64dec(){try{b64dres.innerHTML=atob(b64d.value)}catch(e){b64dres.innerHTML="Invalid"}}
+function jsonfmt(){try{jsonres.textContent=JSON.stringify(JSON.parse(json.value),null,2)}catch(e){jsonres.textContent="Invalid JSON"}}
+function tipCalc(){tipres.innerHTML=(+bill.value + (+bill.value*+tip.value/100)).toFixed(2);}
+</script>
+</body></html>
